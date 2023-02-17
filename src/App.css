@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    width: 100%;
+    font-family: sans-serif;
+}
+
+.containerCards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    justify-content: space-evenly;
+    width: 300px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
