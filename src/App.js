@@ -27,7 +27,10 @@ function App() {
         return data.filter(
             (item) =>
                 item.name.toLowerCase().includes(search) ||
-                item.id.toString().includes(search)
+                item.id.toString().includes(search) ||
+                item.types[0].type.name.toLowerCase().includes(search) ||
+                (item.types[1] &&
+                    item.types[1].type.name.toLowerCase().includes(search))
         );
     };
 
@@ -43,13 +46,17 @@ function App() {
                     <h1>First Gen</h1>
                 </div>
                 <div className="filter-container">
-                    <input
-                        type="text"
-                        placeholder="Search by Name or Number"
-                        onChange={(e) =>
-                            setSearch(e.target.value.toLowerCase())
-                        }
-                    ></input>
+                    <div className="input-container">
+                        <input
+                            name="búsqueda"
+                            type="text"
+                            placeholder="Search by Name, Number or Type"
+                            onChange={(e) =>
+                                setSearch(e.target.value.toLowerCase())
+                            }
+                        ></input>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                     <label htmlFor="sort">Sort by:</label>
                     <select
                         name="sort"
