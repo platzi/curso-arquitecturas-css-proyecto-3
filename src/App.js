@@ -1,16 +1,16 @@
 import "./App.css";
 import { useState } from "react";
-import MiApi from "./Components/MiApi";
-import Header from "./Components/Header";
-import Card from "./Components/Card";
-import Loading from "./Components/Loading";
+import MiApi from "./repositories/MiApi";
+import Header from "./blocks/Header/Header";
+import PokemonCard from "./containers/PokemonCard";
+import Loader from "./elements/Loader";
 
 function App() {
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState("num-low-high");
     const data = MiApi();
 
-    if (!data) return <Loading />;
+    if (!data) return <Loader />;
 
     const byNum = (info) =>
         info.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0));
@@ -36,12 +36,10 @@ function App() {
 
     return (
         <div className="global-container">
-
             <Header setSearch={setSearch} sort={sort} setSort={setSort} />
             <div className="cards-container">
-                <Card poke={searcher(data)} />
+                <PokemonCard poke={searcher(data)} />
             </div>
-            
         </div>
     );
 }
